@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 public class App {
     public static void main(String[] args) {
         List<Movie> movies = List.of(
-            new Movie("c", 10),
-            new Movie("b", 15),
-            new Movie("a", 20),
-            new Movie("d", 10)
+            new Movie("c", 10, Genre.ACTION),
+            new Movie("b", 15, Genre.COMEDY),
+            new Movie("a", 20, Genre.THRILLER),
+            new Movie("d", 10, Genre.THRILLER)
         );
 
         // Declarative approach
@@ -58,8 +58,7 @@ public class App {
         // System.out.println(result);
 
         var result = movies.stream()
-                .filter(m -> m.getLikes() > 10)
-                .collect(Collectors.summarizingInt(Movie::getLikes));
+                .collect(Collectors.groupingBy(Movie::getGenre));
         System.out.println("\n" + result);
         
     }
