@@ -1,6 +1,7 @@
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -33,10 +34,15 @@ public class App {
         // System.out.println(result.getTitle());
         
 
-        Integer sum = movies.stream()
-            .map(Movie::getLikes)
-            .reduce(0, Integer::sum);
-            // .reduce((a, b) -> a + b) is the equivalent here
-        System.out.println(sum);
+        // int sum = movies.stream()
+        //     .mapToInt(Movie::getLikes)
+        //     .reduce(0, Integer::sum);
+        //     // .reduce((a, b) -> a + b) is the equivalent here
+        // System.out.println(sum);
+
+        List<Movie> result = movies.stream()
+              .filter(m -> m.getLikes() > 10)
+              .collect(Collectors.toList());
+        System.out.println(result);
     }
 }
