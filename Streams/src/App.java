@@ -2,6 +2,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class App {
@@ -50,9 +51,10 @@ public class App {
          * What if we want a map, that looks like... {Title --> Likes}
          * Then we can do something like this:
          */
-        Map<String, Integer> result = movies.stream()
+        Map<String, Movie> result = movies.stream()
                 .filter(m -> m.getLikes() > 10)
-                .collect(Collectors.toMap(Movie::getTitle, Movie::getLikes));
+                .collect(Collectors.toMap(Movie::getTitle, Function.identity()));
+                // .collect(Collectors.toMap(Movie::getTitle, (m -> m))); is equivalent
         System.out.println(result);
         
     }
