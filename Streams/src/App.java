@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class App {
     public static void main(String[] args) {
@@ -26,10 +27,16 @@ public class App {
         // .peek(title -> System.out.println("mapped: " + title))
         // .forEach(System.out::println);
 
-        var result = movies.stream()
-			.max(Comparator.comparing(Movie::getTitle).reversed())
-			.get();
-        System.out.println(result.getTitle());
+        // var result = movies.stream()
+		// 	.max(Comparator.comparing(Movie::getTitle).reversed())
+		// 	.get();
+        // System.out.println(result.getTitle());
+        
 
+        Optional<Integer> sum = movies.stream()
+            .map(Movie::getLikes)
+            .reduce(Integer::sum);
+            // .reduce((a, b) -> a + b) is the equivalent here
+        System.out.println(sum.orElse(0));
     }
 }
