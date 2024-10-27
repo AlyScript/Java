@@ -19,10 +19,17 @@ public class App {
         // .sorted((a, b) -> b.getLikes() - a.getLikes())
         // .forEach(m -> System.out.println(m.getTitle()));
 
-        movies.stream()
-        .map(Movie::getLikes)
-        .distinct()
-        .forEach(System.out::println);
+        // movies.stream()
+        // .filter(m -> m.getLikes() > 10)
+        // .peek(m -> System.out.println("filtered: " + m.getTitle()))
+        // .map(Movie::getTitle)
+        // .peek(title -> System.out.println("mapped: " + title))
+        // .forEach(System.out::println);
+
+        var result = movies.stream()
+			.max(Comparator.comparing(Movie::getTitle).reversed())
+			.get();
+        System.out.println(result.getTitle());
 
     }
 }
