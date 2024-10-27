@@ -51,10 +51,15 @@ public class App {
          * What if we want a map, that looks like... {Title --> Likes}
          * Then we can do something like this:
          */
-        Map<String, Movie> result = movies.stream()
+        // Map<String, Movie> result = movies.stream()
+        //         .filter(m -> m.getLikes() > 10)
+        //         .collect(Collectors.toMap(Movie::getTitle, Function.identity()));
+        //         // .collect(Collectors.toMap(Movie::getTitle, (m -> m))); is equivalent
+        // System.out.println(result);
+
+        var result = movies.stream()
                 .filter(m -> m.getLikes() > 10)
-                .collect(Collectors.toMap(Movie::getTitle, Function.identity()));
-                // .collect(Collectors.toMap(Movie::getTitle, (m -> m))); is equivalent
+                .collect(Collectors.summingInt(Movie::getLikes));
         System.out.println(result);
         
     }
