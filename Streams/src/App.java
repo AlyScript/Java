@@ -6,19 +6,23 @@ public class App {
         List<Movie> movies = List.of(
             new Movie("c", 10),
             new Movie("b", 15),
-            new Movie("a", 20)
+            new Movie("a", 20),
+            new Movie("d", 10)
         );
-
-
 
         // Declarative approach
         // movies.stream()
         //     .sorted(Comparator.comparing(Movie::getLikes))
         //     .forEach(m -> System.out.println(m.getTitle()));
-        
+    
+        // movies.stream()
+        // .sorted((a, b) -> b.getLikes() - a.getLikes())
+        // .forEach(m -> System.out.println(m.getTitle()));
 
         movies.stream()
-        .sorted((a, b) -> b.getLikes() - a.getLikes())
-        .forEach(m -> System.out.println(m.getTitle()));
+        .map(Movie::getLikes)
+        .distinct()
+        .forEach(System.out::println);
+
     }
 }
