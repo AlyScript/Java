@@ -58,7 +58,8 @@ public class App {
         // System.out.println(result);
 
         var result = movies.stream()
-                .collect(Collectors.groupingBy(Movie::getGenre));
+                .collect(Collectors.groupingBy(
+                        Movie::getGenre, Collectors.counting()));
         System.out.println("\n" + result);
         
     }
