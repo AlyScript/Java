@@ -33,10 +33,10 @@ public class App {
         // System.out.println(result.getTitle());
         
 
-        Optional<Integer> sum = movies.stream()
+        Integer sum = movies.stream()
             .map(Movie::getLikes)
-            .reduce(Integer::sum);
+            .reduce(0, Integer::sum);
             // .reduce((a, b) -> a + b) is the equivalent here
-        System.out.println(sum.orElse(0));
+        System.out.println(sum);
     }
 }
