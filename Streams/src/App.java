@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -40,9 +41,19 @@ public class App {
         //     // .reduce((a, b) -> a + b) is the equivalent here
         // System.out.println(sum);
 
-        List<Movie> result = movies.stream()
-              .filter(m -> m.getLikes() > 10)
-              .collect(Collectors.toList());
+        // List<Movie> result = movies.stream()
+        //       .filter(m -> m.getLikes() > 10)
+        //       .collect(Collectors.toList());
+        // System.out.println(result);
+
+        /*
+         * What if we want a map, that looks like... {Title --> Likes}
+         * Then we can do something like this:
+         */
+        Map<String, Integer> result = movies.stream()
+                .filter(m -> m.getLikes() > 10)
+                .collect(Collectors.toMap(Movie::getTitle, Movie::getLikes));
         System.out.println(result);
+        
     }
 }
