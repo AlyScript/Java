@@ -59,8 +59,8 @@ public class App {
 
         var result = movies.stream()
                 .filter(m -> m.getLikes() > 10)
-                .collect(Collectors.summingInt(Movie::getLikes));
-        System.out.println(result);
+                .collect(Collectors.summarizingInt(Movie::getLikes));
+        System.out.println("\n" + result);
         
     }
 }
